@@ -1,6 +1,9 @@
 --Query 6
-SELECT TOP 10
-       [CountryRegionCode],
-       '' AS [Name]
-FROM [Person].[CountryRegion]
+SELECT DISTINCT 
+	CustomerID,
+	OrderDate,
+	SalesOrderID,
+	CreditCardID,
+	ROW_NUMBER() OVER(ORDER BY OrderDate, SalesOrderID) AS rownum
+FROM Sales.SalesOrderHeader
 ;

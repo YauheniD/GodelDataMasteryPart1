@@ -1,6 +1,8 @@
 --Query 4
-SELECT TOP 10
-       [SalesOrderID],
-       '' AS [TotalDiscount]
-FROM [Sales].[SalesOrderDetail]
+SELECT DISTINCT 
+	SalesOrderID, 
+	UnitPriceDiscount * OrderQty
+FROM Sales.SalesOrderDetail 
+WHERE UnitPriceDiscount * OrderQty > 5
+ORDER BY UnitPriceDiscount * OrderQty DESC
 ;
