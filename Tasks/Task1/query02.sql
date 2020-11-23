@@ -1,7 +1,12 @@
 --Query 2
-SELECT TOP 10
-       [SalesOrderID],
-       [OrderDate],
-       [TotalDue]
-FROM [Sales].[SalesOrderHeader]
-;
+SELECT 
+	SalesOrderID,
+	OrderDate,
+	TotalDue
+FROM Sales.SalesOrderHeader
+WHERE 
+	YEAR(OrderDate) = 2011
+	AND
+	OrderDate = EOMONTH(OrderDate) 
+	AND
+	TotalDue < 1000
