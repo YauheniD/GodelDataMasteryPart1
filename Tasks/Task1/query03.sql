@@ -1,8 +1,4 @@
---Query 3
-SELECT TOP 10
-       [BusinessEntityID],
-       [FirstName],
-       [MiddleName],
-       [LastName]
-FROM [Person].[Person]
-;
+SELECT BusinessEntityID, FirstName, 
+		MiddleName, LastName
+FROM Person.Person
+WHERE LastName LIKE '%t%t%t%';
