@@ -10,3 +10,4 @@ WHERE
 	OrderDate = EOMONTH(OrderDate) 
 	AND
 	TotalDue < 1000
+;

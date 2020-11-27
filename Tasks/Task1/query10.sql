@@ -10,3 +10,4 @@ WHERE
 	YEAR(OrderDate) = 2011 
 	AND
 	MONTH(OrderDate) = 8
+;

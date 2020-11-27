@@ -12,3 +12,4 @@ WHERE
 	OnlineOrderFlag = 'True') 
 	AND
 	OrderDate = '2011-05-31'
+;

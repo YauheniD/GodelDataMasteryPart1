@@ -6,4 +6,4 @@ FROM Sales.SalesOrderHeader
 WHERE YEAR(OrderDate) = 2013 
 GROUP BY CustomerID
 ORDER BY SUM(Freight) DESC
-
+;

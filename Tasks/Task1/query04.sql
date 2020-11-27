@@ -5,3 +5,4 @@ SELECT DISTINCT
 FROM Sales.SalesOrderDetail
 WHERE UnitPriceDiscount * OrderQty > 5
 ORDER BY TotalDiscount DESC
+;
