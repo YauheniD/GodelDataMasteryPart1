@@ -1,7 +1,8 @@
 SELECT SalesOrderID,
-		OrderDate, 
-		TotalDue
+       OrderDate,
+       TotalDue
 FROM Sales.SalesOrderHeader
-WHERE OrderDate = EOMONTH(OrderDate) 
-		AND YEAR(OrderDate) = 2011 
-		AND TotalDue < 1000;
+WHERE OrderDate = EOMONTH(OrderDate)
+       AND YEAR(OrderDate) = 2011
+       AND TotalDue < 1000
+;

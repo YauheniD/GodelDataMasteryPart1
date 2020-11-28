@@ -1,4 +1,7 @@
-SELECT BusinessEntityID, FirstName, 
-		MiddleName, LastName
+SELECT BusinessEntityID,
+       FirstName,
+       MiddleName,
+       LastName
 FROM Person.Person
-WHERE LastName LIKE '%t%t%t%';
+WHERE LastName LIKE '%t%t%t%'
+;
