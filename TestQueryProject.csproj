@@ -78,6 +78,15 @@
     <Content Include="Tasks\Task1\query08.sql" />
     <Content Include="Tasks\Task1\query09.sql" />
     <Content Include="Tasks\Task1\query10.sql" />
+    <Content Include="Tasks\Task2\query01.sql" />
+    <Content Include="Tasks\Task2\query02.sql" />
+    <Content Include="Tasks\Task2\query03.sql" />
+    <Content Include="Tasks\Task2\query04.sql" />
+    <Content Include="Tasks\Task2\query05.sql" />
+    <Content Include="Tasks\Task2\query06.sql" />
+    <Content Include="Tasks\Task2\query07.sql" />
+    <Content Include="Tasks\Task2\query08.sql" />
+    <Content Include="Tasks\Task2\query09.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
