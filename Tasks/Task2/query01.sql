@@ -1,18 +1,23 @@
 SELECT TOP 3 BusinessEntityID,
-		FirstName,
-		MiddleName,
-		LastName
+       FirstName,
+       MiddleName,
+       LastName
 FROM Person.Person
+
 UNION ALL
+
 SELECT TOP 3 BusinessEntityID,
-		FirstName,
-		MiddleName,
-		LastName
+       FirstName,
+       MiddleName,
+       LastName
 FROM Person.Person
+
 UNION ALL
+
 SELECT TOP 3 BusinessEntityID,
-		FirstName,
-		MiddleName,
-		LastName
+       FirstName,
+       MiddleName,
+       LastName
 FROM Person.Person
-ORDER BY BusinessEntityID;
+ORDER BY BusinessEntityID
+;
