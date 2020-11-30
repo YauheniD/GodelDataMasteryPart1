@@ -1,19 +1,15 @@
-SELECT HumanResources.Employee.BusinessEntityID,
-       Person.Person.LastName,
+SELECT EMP.BusinessEntityID,
+       P.LastName,
        CASE 
-              WHEN Person.PersonPhone.PhoneNumberTypeID = 1
-                     THEN Person.PersonPhone.PhoneNumber
-              WHEN Person.PersonPhone.PhoneNumberTypeID != 1
-                     THEN NULL
+              WHEN PPHONE.PhoneNumberTypeID = 1
+                   THEN PPHONE.PhoneNumber
+              ELSE NULL
               END AS PhoneNumber
-FROM HumanResources.Employee
-LEFT JOIN Person.Person
-       ON Person.Person.BusinessEntityID = HumanResources.Employee.BusinessEntityID
-LEFT JOIN Person.PersonPhone
-       ON Person.PersonPhone.BusinessEntityID = Person.Person.BusinessEntityID
-WHERE Person.Person.PersonType IN (
-              'EM',
-              'SP'
-              )
-ORDER BY HumanResources.Employee.BusinessEntityID
+FROM HumanResources.Employee AS EMP
+LEFT JOIN Person.Person AS P
+       ON P.BusinessEntityID = EMP.BusinessEntityID
+LEFT JOIN Person.PersonPhone AS PPHONE
+       ON PPHONE.BusinessEntityID = P.BusinessEntityID
+WHERE P.PersonType IN ('EM','SP')
+ORDER BY EMP.BusinessEntityID
 ;

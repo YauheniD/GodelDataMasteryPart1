@@ -1,32 +1,32 @@
-SELECT Sales.Customer.CustomerID,
+SELECT C.CustomerID,
        CASE 
-              WHEN Person.Person.MiddleName IS NULL
-                     AND Person.Person.FirstName IS NOT NULL
-                     THEN CONCAT (
-                                   Person.Person.FirstName,
-                                   ' ',
-                                   Person.Person.LastName
-                                   )
-               ELSE
-                          CONCAT (
-                                   Person.Person.FirstName,
-                                   ' ',
-                                   Person.Person.MiddleName,
-                                   ' ',
-                                   Person.Person.LastName
-                                   )
+              WHEN P.FirstName IS NULL
+                   THEN NULL
+              WHEN P.MiddleName IS NULL
+                   AND P.FirstName IS NOT NULL
+                   THEN CONCAT (
+                                 P.FirstName,
+                                 ' ',
+                                 P.LastName
+                                )
+              ELSE CONCAT (
+                            P.FirstName,
+                            ' ',
+                            P.MiddleName,
+                            ' ',
+                            P.LastName
+                            )
               END AS CustomerFullName,
-       SalesOrderID,
-       OrderDate
-FROM Sales.SalesOrderHeader
-FULL OUTER JOIN Sales.Customer
-       ON Sales.Customer.CustomerID = Sales.SalesOrderHeader.CustomerID
-LEFT JOIN Person.Person
-       ON Person.Person.BusinessEntityID = Sales.Customer.PersonID
+       OH.SalesOrderID,
+       OH.OrderDate
+FROM Sales.SalesOrderHeader AS OH
+FULL JOIN Sales.Customer AS C
+       ON C.CustomerID = OH.CustomerID
+LEFT JOIN Person.Person AS P
+       ON P.BusinessEntityID = C.PersonID
 WHERE (
-              SalesOrderID IS NULL
-              OR OrderDate = '01/01/2013'
-              )
-       AND Sales.Customer.CustomerID IS NOT NULL
-ORDER BY CustomerID
-;
+       OH.SalesOrderID IS NULL
+       OR OH.OrderDate = '01/01/2013'
+      )
+       AND C.CustomerID IS NOT NULL
+ORDER BY C.CustomerID;
