@@ -1,10 +1,11 @@
-SELECT Purchasing.Vendor.Name AS VendorName,
-       Product.Name AS ProductName
-FROM Purchasing.Vendor
-LEFT JOIN Purchasing.ProductVendor
-       ON Purchasing.Vendor.BusinessEntityID = Purchasing.ProductVendor.BusinessEntityID
-LEFT JOIN Production.Product
-       ON Production.Product.ProductID = Purchasing.ProductVendor.ProductID
+SELECT V.Name AS VendorName,
+       P.Name AS ProductName
+FROM Purchasing.Vendor AS V
+LEFT JOIN Purchasing.ProductVendor AS PV
+       ON V.BusinessEntityID = PV.BusinessEntityID
+LEFT JOIN Production.Product AS P
+       ON P.ProductID = PV.ProductID
 ORDER BY VendorName,
        ProductName
 ;
+

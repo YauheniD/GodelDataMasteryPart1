@@ -1,40 +1,41 @@
-SELECT Sales.Customer.CustomerID,
+SELECT C.CustomerID,
        CASE 
-              WHEN Person.Person.MiddleName IS NULL
-                     AND Person.Person.FirstName IS NOT NULL
-                     THEN CONCAT (
-                                   Person.Person.FirstName,
-                                   ' ',
-                                   Person.Person.LastName
-                                   )
+              WHEN PER.MiddleName IS NULL
+                   AND PER.FirstName IS NOT NULL
+                   THEN CONCAT (
+                                 PER.FirstName,
+                                 ' ',
+                                 PER.LastName
+                                )
               ELSE CONCAT (
-                            Person.Person.FirstName,
+                            PER.FirstName,
                             ' ',
-                            Person.Person.MiddleName,
+                            PER.MiddleName,
                             ' ',
-                            Person.Person.LastName
-                            )
-              END AS CustomerFullName,
-       Product.Name AS ProductName
-FROM Person.Person
-LEFT JOIN Person.BusinessEntityAddress
-       ON Person.BusinessEntityAddress.BusinessEntityID = Person.Person.BusinessEntityID
-LEFT JOIN Person.Address
-       ON Person.BusinessEntityAddress.AddressID = Person.Address.AddressID
-LEFT JOIN Person.StateProvince
-       ON Person.Address.StateProvinceID = Person.StateProvince.StateProvinceID
-LEFT JOIN Person.CountryRegion
-       ON Person.CountryRegion.CountryRegionCode = Person.StateProvince.CountryRegionCode
-LEFT JOIN Sales.Customer
-       ON Sales.Customer.PersonID = Person.Person.BusinessEntityID
-LEFT JOIN Sales.SalesOrderHeader
-       ON Sales.SalesOrderHeader.CustomerID = Sales.Customer.CustomerID
-LEFT JOIN Sales.SalesOrderDetail
-       ON Sales.SalesOrderDetail.SalesOrderID = SalesOrderHeader.SalesOrderID
-LEFT JOIN Production.Product
-       ON Production.Product.ProductID = Sales.SalesOrderDetail.ProductID
-WHERE Person.CountryRegion.Name = 'France'
-       AND Person.Person.MiddleName = 'R'
-ORDER BY CustomerID,
+                            PER.LastName
+                           )
+       END AS CustomerFullName,
+       PROD.Name AS ProductName
+FROM Person.Person AS PER
+LEFT JOIN Person.BusinessEntityAddress AS BEA
+       ON BEA.BusinessEntityID = PER.BusinessEntityID
+LEFT JOIN Person.Address AS A
+       ON BEA.AddressID = A.AddressID
+LEFT JOIN Person.StateProvince AS SP
+       ON A.StateProvinceID = SP.StateProvinceID
+LEFT JOIN Person.CountryRegion AS CR
+       ON CR.CountryRegionCode = SP.CountryRegionCode
+LEFT JOIN Sales.Customer AS C
+       ON C.PersonID = PER.BusinessEntityID
+LEFT JOIN Sales.SalesOrderHeader AS OH
+       ON C.CustomerID = OH.CustomerID
+LEFT JOIN Sales.SalesOrderDetail AS OD
+       ON OD.SalesOrderID = OH.SalesOrderID
+LEFT JOIN Production.Product AS PROD
+       ON PROD.ProductID = OD.ProductID
+WHERE CR.Name = 'France'
+       AND PER.MiddleName = 'R'
+ORDER BY OH.CustomerID,
        ProductName
 ;
+
