@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace TestQueryProject
@@ -69,6 +70,23 @@ namespace TestQueryProject
             fs.Close();
             return dt;
         }
-
+        public static String ConnectionString()
+        {
+            String connectionString = "";
+            foreach (ConnectionStringSettings conStr in ConfigurationManager.ConnectionStrings)
+            {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(conStr.ConnectionString))
+                    {
+                        connection.Open();
+                        connectionString = conStr.ConnectionString;
+                        connection.Close();
+                    }
+                }
+                catch { }
+            }
+            return connectionString;
+        }
     }
 }

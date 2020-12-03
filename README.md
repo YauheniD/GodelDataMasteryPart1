@@ -4,10 +4,11 @@
 Unit test project to check basic sql queries for Godel Data Mastery
 
 ## How To Use?
- - Put query scripts to appropriate folder `GodelDataMasteryPart1\Tasks\<Task#>\<Queries>`
+ - (if not exists) Add you connection string to app.config
+ - Put query scripts to appropriate folder `<ProjectName>\Tasks\<Name>\<Task#>\<Query##>`
+ - (if not exists) Add unit test to `<ProjectName>\Tests` with namespace `<Name>` and `TestClass` name `<Task#>`
  - Run Tests
 
 ## Issues
- - Connection string is hardcoded so please be aware and change if required (could be found at each UnitTestTask class under TestInitialize attribute)
- - Test results for Task2+ were not reviewed (WIP)
- 
+ - Task3+ to be added
+

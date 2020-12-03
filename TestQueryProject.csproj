@@ -44,10 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTestTask1.cs" />
+    <Compile Include="Tests\Maksim.cs" />
+    <Compile Include="Tests\Viachaslau.cs" />
+    <Compile Include="Tests\Vadzim.cs" />
+    <Compile Include="Tests\Barys.cs" />
+    <Compile Include="Tests\_Origin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTestTask3.cs" />
-    <Compile Include="UnitTestTask2.cs" />
     <Compile Include="Helper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +62,9 @@
     <PackageReference Include="MSTest.TestFramework">
       <Version>2.1.2</Version>
     </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager">
+      <Version>5.0.0</Version>
+    </PackageReference>
     <PackageReference Include="System.Data.SqlClient">
       <Version>4.8.2</Version>
     </PackageReference>
@@ -68,28 +73,106 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tasks\Task1\query01.sql" />
-    <Content Include="Tasks\Task1\query02.sql" />
-    <Content Include="Tasks\Task1\query03.sql" />
-    <Content Include="Tasks\Task1\query04.sql" />
-    <Content Include="Tasks\Task1\query05.sql" />
-    <Content Include="Tasks\Task1\query06.sql" />
-    <Content Include="Tasks\Task1\query07.sql" />
-    <Content Include="Tasks\Task1\query08.sql" />
-    <Content Include="Tasks\Task1\query09.sql" />
-    <Content Include="Tasks\Task1\query10.sql" />
-    <Content Include="Tasks\Task2\query01.sql" />
-    <Content Include="Tasks\Task2\query02.sql" />
-    <Content Include="Tasks\Task2\query03.sql" />
-    <Content Include="Tasks\Task2\query04.sql" />
-    <Content Include="Tasks\Task2\query05.sql" />
-    <Content Include="Tasks\Task2\query06.sql" />
-    <Content Include="Tasks\Task2\query07.sql" />
-    <Content Include="Tasks\Task2\query08.sql" />
-    <Content Include="Tasks\Task2\query09.sql" />
+    <Content Include="Tasks\Barys\Task1\query01.sql" />
+    <Content Include="Tasks\Barys\Task1\query02.sql" />
+    <Content Include="Tasks\Barys\Task1\query03.sql" />
+    <Content Include="Tasks\Barys\Task1\query04.sql" />
+    <Content Include="Tasks\Barys\Task1\query05.sql" />
+    <Content Include="Tasks\Barys\Task1\query06.sql" />
+    <Content Include="Tasks\Barys\Task1\query07.sql" />
+    <Content Include="Tasks\Barys\Task1\query08.sql" />
+    <Content Include="Tasks\Barys\Task1\query09.sql" />
+    <Content Include="Tasks\Barys\Task1\query10.sql" />
+    <Content Include="Tasks\Barys\Task2\query01.sql" />
+    <Content Include="Tasks\Barys\Task2\query02.sql" />
+    <Content Include="Tasks\Barys\Task2\query03.sql" />
+    <Content Include="Tasks\Barys\Task2\query04.sql" />
+    <Content Include="Tasks\Barys\Task2\query05.sql" />
+    <Content Include="Tasks\Barys\Task2\query06.sql" />
+    <Content Include="Tasks\Barys\Task2\query07.sql" />
+    <Content Include="Tasks\Barys\Task2\query08.sql" />
+    <Content Include="Tasks\Barys\Task2\query09.sql" />
+    <Content Include="Tasks\_Origin\Task1\query01.sql" />
+    <Content Include="Tasks\_Origin\Task1\query02.sql" />
+    <Content Include="Tasks\_Origin\Task1\query03.sql" />
+    <Content Include="Tasks\_Origin\Task1\query04.sql" />
+    <Content Include="Tasks\_Origin\Task1\query05.sql" />
+    <Content Include="Tasks\_Origin\Task1\query06.sql" />
+    <Content Include="Tasks\_Origin\Task1\query07.sql" />
+    <Content Include="Tasks\_Origin\Task1\query08.sql" />
+    <Content Include="Tasks\_Origin\Task1\query09.sql" />
+    <Content Include="Tasks\_Origin\Task1\query10.sql" />
+    <Content Include="Tasks\_Origin\Task2\query01.sql" />
+    <Content Include="Tasks\_Origin\Task2\query02.sql" />
+    <Content Include="Tasks\_Origin\Task2\query03.sql" />
+    <Content Include="Tasks\_Origin\Task2\query04.sql" />
+    <Content Include="Tasks\_Origin\Task2\query05.sql" />
+    <Content Include="Tasks\_Origin\Task2\query06.sql" />
+    <Content Include="Tasks\_Origin\Task2\query07.sql" />
+    <Content Include="Tasks\_Origin\Task2\query08.sql" />
+    <Content Include="Tasks\_Origin\Task2\query09.sql" />
+    <Content Include="Tasks\Maksim\Task1\query01.sql" />
+    <Content Include="Tasks\Maksim\Task1\query02.sql" />
+    <Content Include="Tasks\Maksim\Task1\query03.sql" />
+    <Content Include="Tasks\Maksim\Task1\query04.sql" />
+    <Content Include="Tasks\Maksim\Task1\query05.sql" />
+    <Content Include="Tasks\Maksim\Task1\query06.sql" />
+    <Content Include="Tasks\Maksim\Task1\query07.sql" />
+    <Content Include="Tasks\Maksim\Task1\query08.sql" />
+    <Content Include="Tasks\Maksim\Task1\query09.sql" />
+    <Content Include="Tasks\Maksim\Task1\query10.sql" />
+    <Content Include="Tasks\Maksim\Task2\query01.sql" />
+    <Content Include="Tasks\Maksim\Task2\query02.sql" />
+    <Content Include="Tasks\Maksim\Task2\query03.sql" />
+    <Content Include="Tasks\Maksim\Task2\query04.sql" />
+    <Content Include="Tasks\Maksim\Task2\query05.sql" />
+    <Content Include="Tasks\Maksim\Task2\query06.sql" />
+    <Content Include="Tasks\Maksim\Task2\query07.sql" />
+    <Content Include="Tasks\Maksim\Task2\query08.sql" />
+    <Content Include="Tasks\Maksim\Task2\query09.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query01.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query02.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query03.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query04.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query05.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query06.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query07.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query08.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query09.sql" />
+    <Content Include="Tasks\Vadzim\Task1\query10.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query01.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query02.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query03.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query04.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query05.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query06.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query07.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query08.sql" />
+    <Content Include="Tasks\Vadzim\Task2\query09.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query01.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query02.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query03.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query04.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query05.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query06.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query07.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query08.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query09.sql" />
+    <Content Include="Tasks\Viachaslau\Task1\query10.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query01.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query02.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query03.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query04.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query05.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query06.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query07.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query08.sql" />
+    <Content Include="Tasks\Viachaslau\Task2\query09.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="README.md" />
     <None Include="TestResults\Task1\query01.bin" />
     <None Include="TestResults\Task1\query02.bin" />
     <None Include="TestResults\Task1\query03.bin" />
@@ -109,6 +192,16 @@
     <None Include="TestResults\Task2\query07.bin" />
     <None Include="TestResults\Task2\query08.bin" />
     <None Include="TestResults\Task2\query09.bin" />
+    <None Include="TestResults\Task3.1\query01.bin" />
+    <None Include="TestResults\Task3.1\query02.bin" />
+    <None Include="TestResults\Task3.1\query03.bin" />
+    <None Include="TestResults\Task3.1\query04.bin" />
+    <None Include="TestResults\Task3.1\query05.bin" />
+    <None Include="TestResults\Task3.1\query06.bin" />
+    <None Include="TestResults\Task3.1\query07.bin" />
+    <None Include="TestResults\Task3.1\query08.bin" />
+    <None Include="TestResults\Task3.1\query09.bin" />
+    <None Include="TestResults\Task3.1\query10.bin" />
     <None Include="TestResults\Task3\query01.bin" />
     <None Include="TestResults\Task3\query02.bin" />
     <None Include="TestResults\Task3\query03.bin" />
@@ -117,8 +210,6 @@
     <None Include="TestResults\Task3\query06.bin" />
     <None Include="TestResults\Task3\query07.bin" />
     <None Include="TestResults\Task3\query08.bin" />
-    <None Include="TestResults\Task3\query09.bin" />
-    <None Include="TestResults\Task3\query10.bin" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
