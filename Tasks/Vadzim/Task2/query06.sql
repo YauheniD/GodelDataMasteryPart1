@@ -11,11 +11,13 @@ JOIN Production.Product AS pp
     ON (ssod.ProductID = pp.ProductID)
 JOIN Production.ProductSubCategory AS ppsc 
     ON (ppsc.ProductSubcategoryID = pp.ProductSubcategoryID)
+JOIN Production.ProductCategory AS ppc
+    ON (ppsc.ProductCategoryID = ppc.ProductCategoryID)
 WHERE 
     ssoh.OrderDate = '2013-01-01'
     AND 
     ssoh.OnlineOrderFlag = 'True'
     AND
-    ppsc.ProductCategoryID IN (SELECT ProductCategoryID FROM Production.ProductCategory WHERE Name = 'Bikes')
+    ppc.Name = 'Bikes'
 ORDER BY ssoh.CustomerID
 ;
