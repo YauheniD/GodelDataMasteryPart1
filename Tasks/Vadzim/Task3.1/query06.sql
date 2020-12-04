@@ -1,9 +1,10 @@
 ﻿--Query 6
-SELECT 
-	SalesOrderID,
-	SUM(UnitPrice) AS TotalUnitPrice
-FROM Sales.SalesOrderDetail
-WHERE SalesOrderID IN (SELECT SalesOrderID FROM Sales.SalesOrderHeader WHERE YEAR(OrderDate) = 2005)
-GROUP BY SalesOrderID
-ORDER BY SalesOrderID
+SELECT TOP(10)
+    ssod.SalesOrderID,
+    MAX(ssod.UnitPrice) AS TotalPrice
+FROM Sales.SalesOrderDetail AS ssod
+JOIN Sales.SalesOrderHeader AS ssoh ON (ssod.SalesOrderID = ssoh.SalesOrderID)
+WHERE YEAR(ssoh.OrderDate) = 2011
+GROUP BY ssod.SalesOrderID
+ORDER BY TotalPrice DESC
 ;

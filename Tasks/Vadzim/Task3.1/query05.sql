@@ -1,6 +1,6 @@
 ﻿--Query 5
 SELECT 
-	SalesOrderID
+    SalesOrderID
 FROM Sales.SalesOrderDetail
 GROUP BY SalesOrderID
 HAVING SUM(UnitPrice) > 25000
