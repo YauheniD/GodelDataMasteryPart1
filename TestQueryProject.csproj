@@ -92,6 +92,15 @@
     <Content Include="Tasks\Barys\Task2\query07.sql" />
     <Content Include="Tasks\Barys\Task2\query08.sql" />
     <Content Include="Tasks\Barys\Task2\query09.sql" />
+    <Content Include="Tasks\Barys\Task3\query01.sql" />
+    <Content Include="Tasks\Barys\Task3\query02.sql" />
+    <Content Include="Tasks\Barys\Task3\query03.sql" />
+    <Content Include="Tasks\Barys\Task3\query04.sql" />
+    <Content Include="Tasks\Barys\Task3\query05.sql" />
+    <Content Include="Tasks\Barys\Task3\query06.sql" />
+    <Content Include="Tasks\Barys\Task3\query07.sql" />
+    <Content Include="Tasks\Barys\Task3\query08.sql" />
+    <Content Include="Tasks\Barys\Task3\query09.sql" />
     <Content Include="Tasks\_Origin\Task1\query01.sql" />
     <Content Include="Tasks\_Origin\Task1\query02.sql" />
     <Content Include="Tasks\_Origin\Task1\query03.sql" />
