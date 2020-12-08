@@ -101,6 +101,14 @@
     <Content Include="Tasks\Vadzim\Task3.1\query07.sql" />
     <Content Include="Tasks\Vadzim\Task3.1\query08.sql" />
     <Content Include="Tasks\Vadzim\Task3.1\query09.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query01.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query02.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query03.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query04.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query05.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query06.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query07.sql" />
+    <Content Include="Tasks\Vadzim\Task3\query08.sql" />
     <Content Include="Tasks\_Origin\Task1\query01.sql" />
     <Content Include="Tasks\_Origin\Task1\query02.sql" />
     <Content Include="Tasks\_Origin\Task1\query03.sql" />
