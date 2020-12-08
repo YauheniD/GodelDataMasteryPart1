@@ -1,16 +1,14 @@
---Query 5
-SELECT DISTINCT
-    P.BusinessEntityID,
-    P.LastName,
-    CASE 
-        WHEN PT.Name = 'Cell' THEN Ph.PhoneNumber
-        ELSE NULL
-    END AS PhoneNumber
-FROM AdventureWorks2019.Person.Person P
-JOIN AdventureWorks2019.Person.PersonPhone Ph 
-    ON P.BusinessEntityID = Ph.BusinessEntityID
-JOIN AdventureWorks2019.Person.PhoneNumberType PT 
-    ON PT.PhoneNumberTypeID = Ph.PhoneNumberTypeID
-JOIN AdventureWorks2019.HumanResources.Employee E 
-    ON P.BusinessEntityID = E.BusinessEntityID
+SELECT 
+    POH.VendorID,
+    POH.OrderDate,
+    POH.PurchaseOrderID
+FROM Purchasing.PurchaseOrderHeader POH
+WHERE POH.OrderDate = 
+    (
+    SELECT MAX(POH1.OrderDate)
+    FROM Purchasing.PurchaseOrderHeader POH1
+    WHERE POH1.VendorID = POH.VendorID
+    GROUP BY POH1.VendorID
+    )
+ORDER BY VendorID DESC
 ;

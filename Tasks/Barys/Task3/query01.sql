@@ -1,8 +1,12 @@
---Task 1
+--TASK  1
 SELECT 
-    [SalesOrderID],
-    [OrderDate],
-    [CustomerID]
-FROM [AdventureWorks2019].[Sales].[SalesOrderHeader]
-WHERE [OrderDate] = '2011-05-31'
+    SOH.SalesOrderID,
+    SOH.OrderDate,
+    SOH.CustomerID
+FROM Sales.SalesOrderHeader AS SOH
+WHERE SOH.OrderDate =
+    (
+    SELECT MIN(SOH2.OrderDate)
+    FROM Sales.SalesOrderHeader AS SOH2
+    )
 ;

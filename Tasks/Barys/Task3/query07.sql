@@ -1,17 +1,18 @@
 --Query 7
 SELECT DISTINCT
-    SC.CustomerID,
-    P.FirstName + ' ' + COALESCE(P.MiddleName+ ' ', '') + P.LastName AS CustomerFullName,
-    CASE
-        WHEN YEAR(SOI.OrderDate) = '2013' THEN 'Yes'
-        ELSE 'No'
-    END AS Has_Orders_in_2013
-FROM AdventureWorks2019.Sales.SalesOrderHeader SOI
-RIGHT JOIN AdventureWorks2019.Sales.Customer SC 
-    ON SC.CustomerID=SOI.CustomerID 
-    AND YEAR(SOI.OrderDate) = 2013
-JOIN AdventureWorks2019.Person.Person P 
-    ON SC.PersonID=P.BusinessEntityID
-WHERE P.FirstName = 'Zoe'
-ORDER BY Sc.CustomerID
+    SSOH.CustomerID,
+    PR.Name
+FROM AdventureWorks2019.Sales.Customer SC
+JOIN AdventureWorks2019.Sales.SalesOrderHeader SSOH 
+    ON SC.CustomerID=SSOH.CustomerID
+JOIN AdventureWorks2019.Sales.SalesOrderDetail SSOD 
+    ON SSOD.SalesOrderID=SSOH.SalesOrderID
+JOIN AdventureWorks2019.Production.Product PR 
+    ON PR.ProductID=SSOD.ProductID
+JOIN Sales.SpecialOfferProduct SSOP 
+    ON SSOP.SpecialOfferID = SSOD.SpecialOfferID AND SSOP.ProductID = SSOD.ProductID
+JOIN Production.Product P
+    ON SSOP.ProductID = P.ProductID
+WHERE PR.Name = 'Mountain-300 Black, 48'
+ORDER BY SSOH.CustomerID
 ;

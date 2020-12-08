@@ -1,17 +1,27 @@
 --Query 3
-SELECT 
-    Sc.CustomerID,	
-    P.FirstName + ' ' + COALESCE(P.MiddleName + ' ', '') + P.LastName as CustomerFullName,
-    SOI.SalesOrderID,
-    SOI.OrderDate
-FROM Sales.SalesOrderHeader SOI
-RIGHT JOIN Sales.Customer SC 
-    ON SC.CustomerID = SOI.CustomerID
-LEFT JOIN Person.Person P 
+SELECT DISTINCT
+    P.BusinessEntityID,
+    P.FirstName,
+    P.LastName
+FROM AdventureWorks2019.Person.Person P
+JOIN AdventureWorks2019.Sales.SalesPerson SP
+    ON SP.BusinessEntityID = P.BusinessEntityID
+LEFT JOIN AdventureWorks2019.Sales.Customer SC 
     ON SC.PersonID = P.BusinessEntityID
-WHERE 
-    SOI.OrderDate = '2013-01-01'
-    OR
-    SOI.OrderDate IS NULL
-ORDER BY Sc.CustomerID
+LEFT JOIN AdventureWorks2019.Sales.SalesOrderHeader SOI
+    ON SC.CustomerID = SOI.CustomerID
+EXCEPT
+SELECT DISTINCT
+    P.BusinessEntityID,
+    P.FirstName,
+    P.LastName
+FROM AdventureWorks2019.Person.Person P
+JOIN AdventureWorks2019.Sales.SalesPerson SP
+    ON SP.BusinessEntityID = P.BusinessEntityID
+LEFT JOIN AdventureWorks2019.Sales.Customer SC 
+    ON SC.PersonID = P.BusinessEntityID
+LEFT JOIN AdventureWorks2019.Sales.SalesOrderHeader SOI
+    ON SC.CustomerID = SOI.CustomerID
+WHERE SOI.ModifiedDate >= '2008-08-01'
+ORDER BY BusinessEntityID 
 ;

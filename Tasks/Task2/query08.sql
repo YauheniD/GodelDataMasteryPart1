@@ -3,22 +3,22 @@ SELECT
     SSOH.CustomerID,
     PP.FirstName + ' ' + MiddleName + ' ' + PP.LastName AS CustomerFullName,
     PR.Name
-FROM Person.Person PP
-LEFT JOIN Sales.Customer SC 
-    ON PP.BusinessEntityID=SC.PersonID
-LEFT JOIN Sales.SalesOrderHeader SSOH 
+FROM AdventureWorks2019.Sales.Customer SC
+JOIN AdventureWorks2019.Sales.SalesOrderHeader SSOH 
     ON SC.CustomerID=SSOH.CustomerID
-LEFT JOIN Sales.SalesOrderDetail SSOD 
+JOIN AdventureWorks2019.Sales.SalesOrderDetail SSOD 
     ON SSOD.SalesOrderID=SSOH.SalesOrderID
-LEFT JOIN Production.Product PR 
+JOIN AdventureWorks2019.Production.Product PR 
     ON PR.ProductID=SSOD.ProductID
-JOIN Person.BusinessEntityAddress PBEA 
+RIGHT JOIN AdventureWorks2019.Person.Person PP 
+    ON PP.BusinessEntityID=SC.PersonID
+JOIN AdventureWorks2019.Person.BusinessEntityAddress PBEA 
     ON PBEA.BusinessEntityID = PP.BusinessEntityID
-JOIN Person.Address PA 
+JOIN AdventureWorks2019.Person.Address PA 
     ON PBEA.AddressID = PA.AddressID
-JOIN Person.StateProvince PSP 
+JOIN AdventureWorks2019.Person.StateProvince PSP 
     ON PA.StateProvinceID = PSP.StateProvinceID
-JOIN Person.CountryRegion AS PCR 
+JOIN AdventureWorks2019.Person.CountryRegion AS PCR 
     ON pcr.CountryRegionCode = PSP.CountryRegionCode
 WHERE 
     PP.MiddleName = 'R'

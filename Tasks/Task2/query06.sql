@@ -4,14 +4,14 @@ SELECT
     P.Name as BikeName,
     SH.OrderDate,
     SH.OnlineOrderFlag
-FROM Sales.SalesOrderHeader SH
-JOIN Sales.SalesOrderDetail SD 
+FROM AdventureWorks2019.Sales.SalesOrderHeader SH
+JOIN AdventureWorks2019.Sales.SalesOrderDetail SD 
     ON SD.SalesOrderID = SH.SalesOrderID
-JOIN Production.Product P 
+JOIN AdventureWorks2019.Production.Product P 
     ON P.ProductID = SD.ProductID
-JOIN Production.ProductSubcategory PS 
+JOIN AdventureWorks2019.Production.ProductSubcategory PS 
     ON P.ProductSubcategoryID = PS.ProductSubcategoryID
-JOIN Production.ProductCategory PC 
+JOIN AdventureWorks2019.Production.ProductCategory PC 
     On PC.ProductCategoryID = PS.ProductCategoryID
 WHERE 
     SH.OrderDate = '2013-01-01'
