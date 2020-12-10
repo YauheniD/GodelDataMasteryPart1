@@ -6,14 +6,15 @@ RETURN
 (
     WITH Subordinates 
 	( 
-	BusinessEntityID, 
-	Title, 
-	FirstName, 
-	LastName, 
-	ManagerID, 
-	ManagerFirstName, 
-	ManagerLastName,  
-	OrganizationLevel)
+	    BusinessEntityID, 
+	    Title, 
+	    FirstName, 
+	    LastName, 
+	    ManagerID, 
+	    ManagerFirstName, 
+	    ManagerLastName,  
+	    OrganizationLevel
+    )
     AS
     (
         SELECT  
@@ -51,7 +52,6 @@ RETURN
 		LEFT JOIN Person.Person AS P2
             ON E2.BusinessEntityID = P2.BusinessEntityID
     )
-
     SELECT 
         BusinessEntityID, 
         Title, 

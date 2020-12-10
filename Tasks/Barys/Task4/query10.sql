@@ -1,9 +1,19 @@
 --Task 10
-SELECT [SalesOrderID],
-       [OrderDate],
-       DATENAME([dw], [OrderDate]) AS [Day Of Week Name]
-FROM [Sales].[SalesOrderHeader]
-WHERE DATEPART([dw], [OrderDate]) IN (1, 7)
-AND YEAR([OrderDate]) = 2011
-AND MONTH([OrderDate]) = 8
-;
+CREATE FUNCTION Sales.MostRecentOrders
+(
+    @CustID INT, 
+    @TopCount INT
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT TOP (@TopCount)
+	    CustomerID, 
+        OrderDate, 
+        SalesPersonID
+     FROM Sales.SalesOrderHeader
+     WHERE @CustID = CustomerID
+     ORDER BY OrderDate DESC
+ )
+ ;
