@@ -1,19 +1,41 @@
 --Task 4
-WITH Orders_CTE 
-	(
-	SalesOrderID,
-	OrderDate,
-	CustomerID,
-	rownum
-	) AS
-	( SELECT 
-		SalesOrderID,
-		OrderDate,
-		CustomerID,
-		ROW_NUMBER() OVER(PARTITION BY OrderDate ORDER BY SalesOrderID) AS rownum
-	FROM Sales.SalesOrderHeader
-	)
-SELECT *
-FROM Orders_CTE
-WHERE rownum BETWEEN 11 AND 100
+SELECT 
+    C.CustomerID,
+    P.FirstName,
+    P.LastName
+FROM Sales.Customer AS C
+JOIN Sales.SalesOrderHeader AS SOH
+    ON (C.CustomerID = SOH.CustomerID)
+JOIN Person.Person AS P
+    ON (C.PersonID = P.BusinessEntityID)
+WHERE 
+    YEAR(OrderDate) = 2012
+    AND
+    MONTH(OrderDate) = 1
+INTERSECT 
+SELECT 
+    C.CustomerID,
+    P.FirstName,
+    P.LastName
+FROM Sales.Customer AS C
+JOIN Sales.SalesOrderHeader AS SOH
+    ON (C.CustomerID = SOH.CustomerID)
+JOIN Person.Person AS P
+    ON (C.PersonID = P.BusinessEntityID)
+WHERE 
+    YEAR(OrderDate) = 2012
+    AND
+    MONTH(OrderDate) = 3
+EXCEPT
+SELECT 
+    C.CustomerID,
+    P.FirstName,
+    P.LastName
+FROM Sales.Customer AS C
+JOIN Sales.SalesOrderHeader AS SOH
+    ON (C.CustomerID = SOH.CustomerID)
+JOIN Person.Person AS P
+    ON (C.PersonID = P.BusinessEntityID)
+WHERE 
+    YEAR(OrderDate) = 2013
 ;

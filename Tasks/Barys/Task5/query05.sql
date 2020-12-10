@@ -1,18 +1,26 @@
 --Task 5
-WITH Orders_CTE 
-	(
-	YEARS,
-	CID
-	) AS
-	( 
-	SELECT DISTINCT 
-		YEAR(SOH.OrderDate) AS YEARS,
-		SOH.CustomerID AS CID
-	FROM Sales.SalesOrderHeader SOH
-	)
 SELECT 
-	YEARS AS OrderYear,
-	COUNT(*) AS NumberOFCustomers
-FROM Orders_CTE
-GROUP BY YEARS
+    P.BusinessEntityID,
+    P.LastName,
+    P.FirstName
+FROM HumanResources.EmployeeDepartmentHistory EDH 
+JOIN Person.Person P
+    ON P.BusinessEntityID = EDH.BusinessEntityID
+JOIN HumanResources.Department D 
+    ON EDH.DepartmentID = D.DepartmentID
+WHERE 
+    D.Name = 'Sales'
+    AND
+    EDH.EndDate IS NULL
+EXCEPT
+SELECT
+    P.BusinessEntityID,
+    P.LastName,
+    P.FirstName
+FROM HumanResources.Employee E
+JOIN Person.Person P
+    ON P.BusinessEntityID = E.BusinessEntityID
+JOIN Sales.SalesOrderHeader SOH
+    ON SOH.SalesPersonID = E.BusinessEntityID
+WHERE YEAR(SOH.OrderDate) = 2012
 ;

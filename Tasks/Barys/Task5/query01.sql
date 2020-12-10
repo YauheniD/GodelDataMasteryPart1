@@ -1,7 +1,9 @@
 --Task 1
-SELECT 
-	CustomerID,
-	MAX(OrderDate) AS MaxOrderDate
-FROM Sales.SalesOrderHeader
-GROUP BY CustomerID
+WITH Task1 (n)
+AS (
+    SELECT 1 as num
+    UNION ALL
+    SELECT n + 1 FROM Task1
+    WHERE n < 10)
+SELECT n FROM Task1
 ;

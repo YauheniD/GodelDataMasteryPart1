@@ -1,18 +1,29 @@
 --Task 2
 SELECT 
-	SOH.SalesOrderID,
-	SOH.CustomerID,
-	SOH.OrderDate,
-	SOH.SalesPersonID
-FROM Sales.SalesOrderHeader SOH
-JOIN 
-	(
-	SELECT 
-		CustomerID,
-		MAX(OrderDate) AS MaxOrderDate
-	FROM Sales.SalesOrderHeader
-	GROUP BY CustomerID
-	) SOH_MAX
-	ON SOH_MAX.CustomerID = SOH.CustomerID
-	WHERE SOH.OrderDate =  SOH_MAX.MaxOrderDate
+    C.CustomerID,
+    P.FirstName,
+    P.LastName
+FROM Sales.Customer AS C
+JOIN Sales.SalesOrderHeader AS SOH
+    ON (C.CustomerID = SOH.CustomerID)
+JOIN Person.Person AS P
+    ON (C.PersonID = P.BusinessEntityID)
+WHERE 
+    YEAR(OrderDate) = 2012
+    AND
+    MONTH(OrderDate) = 1
+EXCEPT   
+SELECT 
+    C.CustomerID,
+    P.FirstName,
+    P.LastName
+FROM Sales.Customer AS C
+JOIN Sales.SalesOrderHeader AS SOH
+    ON (C.CustomerID = SOH.CustomerID)
+JOIN Person.Person AS P
+    ON (C.PersonID = P.BusinessEntityID)
+WHERE 
+    YEAR(OrderDate) = 2012
+    AND
+    MONTH(OrderDate) = 3
 ;
