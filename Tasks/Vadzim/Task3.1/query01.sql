@@ -1,9 +1,8 @@
 ﻿--Query 1
 SELECT
-    COUNT(BusinessEntityID) AS Number_of_people
-FROM HumanResources.Employee
+    COUNT(hre.BusinessEntityID) AS Number_of_people
+FROM HumanResources.Employee AS hre
+JOIN Sales.SalesPerson AS ssp ON (hre.BusinessEntityID = ssp.BusinessEntityID)
 WHERE 
     MaritalStatus = 'M'
-    AND
-    BusinessEntityID IN (SELECT BusinessEntityID FROM Sales.SalesPerson)
 ;
