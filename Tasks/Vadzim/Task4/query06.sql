@@ -1,5 +1,5 @@
 ﻿--Query 6
-WITH T5 (OrderDate, RowNumber)
+WITH T5 (OrderDate, CountofCustomers)
 AS
 (
     SELECT 
@@ -13,7 +13,7 @@ AS
 )
 SELECT
     OrderDate,
-    RowNumber
+    CountofCustomers
 FROM T5
-WHERE RowNumber > 10000
+WHERE CountofCustomers > 10000
 ;

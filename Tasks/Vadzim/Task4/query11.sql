@@ -1,29 +1,10 @@
 ﻿--Query 11
-DECLARE @TempTable TABLE(
-    CustomerID INT,
-    SalesOrderID INT,
-    OrderDate DATETIME,
-    SalesPersonID INT
-
-)
-
-DECLARE @start INT
-SET @start = (SELECT MIN(CustomerID) FROM Sales.Customer)
-
-WHILE @start < (SELECT MAX(CustomerID) FROM Sales.Customer)
-BEGIN
-    IF @start in (SELECT CustomerID FROM Sales.Customer)
-        INSERT INTO @TempTable (
-        CustomerID,
-        SalesOrderID ,
-        OrderDate ,
-        SalesPersonID
-        )(SELECT @start,SalesOrderID,OrderDate, SalesPersonID FROM Sales.MostRecentOrders(@start, 3))
-        
-    SET @start = @start +1
-    
-    
-END
-SELECT * FROM @TempTable
+SELECT 
+    sc.CustomerID,
+    smro.SalesOrderID ,
+    smro.OrderDate ,
+    smro.SalesPersonID
+FROM Sales.Customer AS sc
+CROSS APPLY Sales.MostRecentOrders(sc.CustomerID, 3)  AS smro
 ORDER BY CustomerID
 ;

@@ -12,7 +12,7 @@ JOIN HumanResources.Employee M
 GO
 
 
-
+DROP FUNCTION IF EXISTS HumanResources.GetSubordinates 
 CREATE FUNCTION HumanResources.GetSubordinates(@BusinessEntityID INT)
 RETURNS TABLE
 AS
@@ -33,7 +33,10 @@ RETURN
         FROM HumanResources.Employee AS e
         INNER JOIN Person.Person AS pp
             ON e.BusinessEntityID = pp.BusinessEntityID 
-        WHERE ManagerID IS NULL
+        WHERE 
+            (@BusinessEntityID IS NOT NULL AND e.BusinessEntityID = @BusinessEntityID)
+            OR
+            (@BusinessEntityID IS NULL AND e.ManagerID IS NULL)
         UNION ALL
         SELECT 
             e.BusinessEntityID, 
@@ -61,12 +64,6 @@ RETURN
         ManagerLastName,   
         Level
     FROM DirectReports
-    WHERE
-        EmployeeID = @BusinessEntityID
-        OR
-        ManagerID = @BusinessEntityID
-        OR
-        @BusinessEntityID IS NULL
 )
 
 SELECT * FROM HumanResources.GetSubordinates(NULL)
