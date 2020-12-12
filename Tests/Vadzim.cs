@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Data;
 using System.IO;
 using TestQueryProject;
 
@@ -393,18 +392,7 @@ namespace Vadzim
             // Act
             var actual = Helper.ExecuteSqlFile(connectionString, actualFilePath);
             var expected = Helper.ConvertBinToDataTable(expectedFilePath);
-            foreach (DataColumn column in expected.Columns)
-                System.Diagnostics.Trace.WriteLine("\t", column.ColumnName);
 
-            // перебор всех строк таблицы
-            foreach (DataRow row in expected.Rows)
-            {
-                // получаем все ячейки строки
-                var cells = row.ItemArray;
-                foreach (object cell in cells)
-                    System.Diagnostics.Trace.WriteLine("\t", cell.ToString());
-
-            }
             // Assert
             Assert.IsTrue(Helper.AreTablesTheSame(actual, expected));
         }
@@ -434,18 +422,7 @@ namespace Vadzim
             // Act
             var actual = Helper.ExecuteSqlFile(connectionString, actualFilePath);
             var expected = Helper.ConvertBinToDataTable(expectedFilePath);
-            foreach (DataColumn column in expected.Columns)
-                System.Diagnostics.Trace.WriteLine("\t", column.ColumnName);
 
-            // перебор всех строк таблицы
-            foreach (DataRow row in expected.Rows)
-            {
-                // получаем все ячейки строки
-                var cells = row.ItemArray;
-                foreach (object cell in cells)
-                    System.Diagnostics.Trace.WriteLine("\t", cell.ToString());
-
-            }
             // Assert
             Assert.IsTrue(Helper.AreTablesTheSame(actual, expected));
         }
@@ -460,18 +437,7 @@ namespace Vadzim
             // Act
             var actual = Helper.ExecuteSqlFile(connectionString, actualFilePath);
             var expected = Helper.ConvertBinToDataTable(expectedFilePath);
-            foreach (DataColumn column in expected.Columns)
-                System.Diagnostics.Trace.WriteLine("\t", column.ColumnName);
 
-            // перебор всех строк таблицы
-            foreach (DataRow row in expected.Rows)
-            {
-                // получаем все ячейки строки
-                var cells = row.ItemArray;
-                foreach (object cell in cells)
-                    System.Diagnostics.Trace.WriteLine("\t", cell.ToString());
-
-            }
             // Assert
             Assert.IsTrue(Helper.AreTablesTheSame(actual, expected));
         }
@@ -486,18 +452,7 @@ namespace Vadzim
             // Act
             var actual = Helper.ExecuteSqlFile(connectionString, actualFilePath);
             var expected = Helper.ConvertBinToDataTable(expectedFilePath);
-            foreach (DataColumn column in expected.Columns)
-                System.Diagnostics.Trace.WriteLine("\t", column.ColumnName);
 
-            // перебор всех строк таблицы
-            foreach (DataRow row in expected.Rows)
-            {
-                // получаем все ячейки строки
-                var cells = row.ItemArray;
-                foreach (object cell in cells)
-                    System.Diagnostics.Trace.WriteLine("\t", cell.ToString());
-
-            }
             // Assert
             Assert.IsTrue(Helper.AreTablesTheSame(actual, expected));
         }
