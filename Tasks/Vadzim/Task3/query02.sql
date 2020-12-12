@@ -1,20 +1,24 @@
 ﻿--Query 2
-SELECT
-    CustomerID,
-    SalesOrderID,
-    OrderDate
-FROM Sales.SalesOrderHeader
-WHERE CustomerID in
-(SELECT rc.CustomerID
-FROM (SELECT CustomerID, COUNT(SalesOrderID) AS cnt
-      FROM Sales.SalesOrderHeader 
-      GROUP BY CustomerID
-     ) rc JOIN
-     (SELECT MAX(cnt) AS maxcnt
-      FROM (SELECT CustomerID, COUNT(SalesOrderID) AS cnt
+WITH CTE (CustomerID)
+AS
+(
+	SELECT 
+		rc.CustomerID
+	FROM (SELECT CustomerID, COUNT(SalesOrderID) AS cnt
+		FROM Sales.SalesOrderHeader 
+		GROUP BY CustomerID) rc 
+	JOIN(SELECT MAX(cnt) AS maxcnt
+		FROM (SELECT CustomerID, COUNT(SalesOrderID) AS cnt
             FROM Sales.SalesOrderHeader
             GROUP BY CustomerID
            ) rc
      ) m
-     ON rc.cnt = m.maxcnt)
+     ON rc.cnt = m.maxcnt
+)
+SELECT
+	ssoh.CustomerID,
+	ssoh.SalesOrderID,
+	ssoh.OrderDate
+FROM Sales.SalesOrderHeader AS ssoh
+JOIN CTE AS c ON (ssoh.CustomerID = c.CustomerID)
 ;

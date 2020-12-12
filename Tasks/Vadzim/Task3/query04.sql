@@ -1,15 +1,21 @@
 ﻿--Query 4
-SELECT
-    Name
-FROM Person.StateProvince as p
-WHERE 
-    StateProvinceID IN (SELECT StateProvinceID FROM Person.Address 
-        WHERE AddressID IN (SELECT AddressID FROM Person.BusinessEntityAddress AS A 
-            WHERE BusinessEntityID IN (SELECT BusinessEntityID FROM Purchasing.Vendor)))
-    AND 
-    NAME NOT IN (SELECT Name FROM Person.StateProvince
-        WHERE StateProvinceID IN (SELECT StateProvinceID FROM Person.Address 
-            WHERE AddressID IN (SELECT AddressID FROM Person.BusinessEntityAddress 
-                WHERE BusinessEntityID  IN (SELECT BusinessEntityID FROM Person.Person 
-                    WHERE BusinessEntityID IN (SELECT PersonID FROM Sales.Customer)))))
+SELECT DISTINCT 
+    psp.NAME
+FROM Person.BusinessEntityAddress AS pbea 
+JOIN Person.Address AS pa 
+    ON pbea.AddressID = pa.AddressID
+JOIN Person.StateProvince AS psp 
+    ON pa.StateProvinceID = psp.StateProvinceID
+JOIN Purchasing.Vendor AS pv
+    ON pbea.BusinessEntityID = pv.BusinessEntityID
+EXCEPT
+SELECT DISTINCT
+    psp.NAME
+FROM Person.BusinessEntityAddress AS pbea 
+JOIN Person.Address AS pa 
+    ON pbea.AddressID = pa.AddressID
+JOIN Person.StateProvince AS psp 
+    ON pa.StateProvinceID = psp.StateProvinceID
+JOIN Sales.Customer AS sc
+    ON sc.PersonID=pbea.BusinessEntityID
 ;
