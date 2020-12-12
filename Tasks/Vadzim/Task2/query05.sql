@@ -3,15 +3,15 @@ SELECT
     hre.BusinessEntityID,
     pp.LastName,
     CASE
-        WHEN ppnt.Name = 'Cell' THEN phone.PhoneNumber
-        ELSE NULL
+        WHEN
+            phone.PhoneNumberTypeID IN (SELECT PhoneNumberTypeID FROM Person.PhoneNumberType WHERE Name = 'Work') THEN NULL
+        ELSE
+            phone.PhoneNumber
     END
 FROM HumanResources.Employee AS hre
 JOIN Person.Person AS pp 
     ON (hre.BusinessEntityID = pp.BusinessEntityID)
-JOIN Person.PersonPhone AS phone 
+LEFT JOIN Person.PersonPhone AS phone 
     ON (pp.BusinessEntityID = phone.BusinessEntityID)
-JOIN Person.PhoneNumberType AS ppnt 
-    ON (ppnt.PhoneNumberTypeID = phone.PhoneNumberTypeID)
 ORDER BY hre.BusinessEntityID
 ;
