@@ -4,13 +4,11 @@ SELECT
     pp.LastName,
     pp.FirstName
 FROM Person.Person AS pp
-LEFT JOIN Person.BusinessEntityAddress AS pbea 
-    ON (pp.BusinessEntityID = pbea.BusinessEntityID)
-LEFT JOIN Person.AddressType AS pat 
-    ON (pat.AddressTypeID = pbea.AddressTypeID)
-WHERE
-    pat.Name != 'Home'
-    OR		
-    pat.Name IS NULL
+WHERE 
+    pp.BusinessEntityID NOT IN (SELECT BusinessEntityID FROM Person.BusinessEntityAddress) 
+    OR
+    pp.BusinessEntityID IN (SELECT BusinessEntityID FROM Person.BusinessEntityAddress 
+    WHERE AddressTypeID IN (SELECT AddressTypeID FROM Person.AddressType
+    WHERE Name != 'Home'))
 ORDER BY pp.BusinessEntityID
 ;
