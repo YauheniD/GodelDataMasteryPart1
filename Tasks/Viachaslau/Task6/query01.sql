@@ -11,8 +11,8 @@ SELECT P.empid,
                      WHEN PM.custid = 'C'
                             THEN PM.qty
                      END) AS C
-FROM tempdb.dbo.Orders6 AS P
-INNER JOIN tempdb.dbo.Orders6 AS PM
+FROM tempdb.dbo.Orders AS P
+INNER JOIN tempdb.dbo.Orders AS PM
        ON PM.empid = P.empid
 GROUP BY P.empid
 ;

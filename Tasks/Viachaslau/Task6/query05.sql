@@ -6,7 +6,7 @@ FROM (
        SELECT empid,
               orderid,
               YEAR(orderdate) AS od
-       FROM tempdb.dbo.Orders6) AS T1
+       FROM tempdb.dbo.Orders) AS T1
 PIVOT(COUNT(T1.orderid) 
       FOR T1.od IN (
                    [2007],
