@@ -1,7 +1,9 @@
 --something wrong with joins
 SELECT DISTINCT PC.Name,
        SUM(ListPrice) OVER (PARTITION BY PC.Name) AS CategoryTotal,
-       SUM(ListPrice) OVER() AS OverallTotal
+       SUM(ListPrice) OVER() AS OverallTotal,
+	   CAST(((CAST(SUM(ListPrice) OVER(PARTITION BY PC.Name) AS FLOAT) / (CAST(SUM(ListPrice) OVER() AS FLOAT)))) * 100 AS FLOAT) AS CategoryPercentage
+
 FROM Production.ProductCategory AS PC
 INNER JOIN Production.ProductSubcategory AS PS
        ON PC.ProductCategoryID = PS.ProductCategoryID
