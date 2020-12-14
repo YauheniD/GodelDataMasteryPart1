@@ -1,7 +1,7 @@
 --something wrong with joins
 SELECT DISTINCT PC.Name,
        SUM(ListPrice) OVER (PARTITION BY PC.Name) AS CategoryTotal,
-       SUM(ListPrice) OVER (PARTITION BY P.Product) AS Total
+       SUM(ListPrice) OVER() AS OverallTotal
 FROM Production.ProductCategory AS PC
 INNER JOIN Production.ProductSubcategory AS PS
        ON PC.ProductCategoryID = PS.ProductCategoryID
