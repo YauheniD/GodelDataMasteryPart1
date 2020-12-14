@@ -13,4 +13,5 @@ WHERE EPH.ModifiedDate =
 		WHERE EPH2.BusinessEntityID = EPH.BusinessEntityID
 	)
 GROUP BY E.JobTitle
+ORDER BY AVG(EPH.Rate)
 ;
