@@ -1,7 +1,7 @@
 SELECT DISTINCT PC.Name,
        SUM(ListPrice) OVER (PARTITION BY PC.Name) AS CategoryTotal,
        SUM(ListPrice) OVER () AS OverallTotal,
-       ROUND(CAST(((CAST(SUM(ListPrice) OVER (PARTITION BY PC.Name) AS FLOAT) / (CAST(SUM(ListPrice) OVER () AS FLOAT)))) * 100 AS FLOAT),2) AS CategoryPercentage
+       ROUND(((SUM(ListPrice) OVER (PARTITION BY PC.Name) / (SUM(ListPrice) OVER ()))* 100),2) AS CategoryPercentage
 FROM Production.ProductCategory AS PC
 INNER JOIN Production.ProductSubcategory AS PS
        ON PC.ProductCategoryID = PS.ProductCategoryID
