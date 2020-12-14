@@ -1,12 +1,12 @@
 --Query 3
-SELECT
-    ppm.Name AS ProductModelName,
-    ppd.Description AS ProductDescription
-FROM Production.ProductModel AS ppm 
-JOIN Production.ProductModelProductDescriptionCulture AS pppdc 
-    ON (ppm.ProductModelID = pppdc.ProductModelID)
-JOIN Production.ProductDescription AS ppd 
-    ON (pppdc.ProductDescriptionID = ppd.ProductDescriptionID )
-WHERE ppm.Name LIKE 'Rear%'
-ORDER BY ProductModelName, ProductDescription
+SELECT DISTINCT
+    ppc.Name AS ProductCategory
+FROM Production.ProductCategory AS ppc
+JOIN Production.ProductSubcategory AS pps ON (ppc.ProductCategoryID = pps.ProductCategoryID)
+JOIN Production.Product AS pp ON (pp.ProductSubcategoryID = pps.ProductSubcategoryID)
+JOIN Sales.SalesOrderDetail AS ssod ON (ssod.ProductID = pp.ProductID)
+JOIN Sales.SalesOrderHeader AS ssoh ON (ssoh.SalesOrderID = ssod.SalesOrderID)
+WHERE 
+    SSOH.OrderDate BETWEEN '2014-06-01' AND '2014-12-31'
+ORDER BY ProductCategory
 ;
