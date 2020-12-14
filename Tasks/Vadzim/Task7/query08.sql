@@ -1,5 +1,6 @@
 ﻿--Query 8
 ALTER TABLE tempdb.dbo.Product ADD RowID INT NULL
+;
 
 UPDATE x
 SET x.RowId = x.New

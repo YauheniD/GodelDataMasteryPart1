@@ -15,6 +15,7 @@ CREATE TABLE dbo.Customers
 
 INSERT INTO tempdb.dbo.Customers(CustomerID, PersonID, FirstName, LastName, StoreName, CountryRegionCode)
     VALUES(999999, 999999, 'John', 'Smith', NULL, 'US')
+;
 
 SELECT * FROM tempdb.dbo.Customers
 ;
